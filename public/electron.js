@@ -1,7 +1,8 @@
 'use strict';
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Tray, Menu } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
+const windowStateKeeper = require('electron-window-state');
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
@@ -13,18 +14,32 @@ const getIcon = () => {
     return `${path.join(__dirname, '/icons/16x16.png')}`;
 };
 
-let mainWindow;
+let mainWindow, tray, contextMenu;
+const nameApp = 'Reco';
 
 const createWindow = async () => {
+    let mainWindowState = windowStateKeeper({
+        defaultWidth: 480,
+        defaultHeight: 590,
+    });
+
     mainWindow = new BrowserWindow({
-        title: 'Reco',
+        title: nameApp,
         show: false,
+        frame: false,
         icon: getIcon(),
-        width: 800,
-        height: 600,
+        x: mainWindowState.x,
+        y: mainWindowState.y,
+        width: mainWindowState.width,
+        height: mainWindowState.height,
+        minWidth: 480,
+        minHeight: 590,
+        titleBarStyle: 'hidden',
+        backgroundColor: '#1b212e',
         webPreferences: {
             contextIsolation: false,
             nodeIntegration: true,
+            enableRemoteModule: true,
             webSecurity: false,
         },
     });
@@ -43,6 +58,43 @@ const createWindow = async () => {
     });
 
     mainWindow.on('closed', () => (mainWindow = null));
+
+    // Tray ///////////////////////////////////////////////////////////
+
+    tray = new Tray(getIcon());
+
+    if (isDev) {
+        contextMenu = Menu.buildFromTemplate([
+            {
+                label: 'Developer Tools',
+                click() {
+                    mainWindow.toggleDevTools();
+                },
+            },
+            { type: 'separator' },
+            {
+                label: 'Exit',
+                role: 'quit',
+            },
+        ]);
+    } else {
+        contextMenu = Menu.buildFromTemplate([
+            {
+                label: 'Exit',
+                role: 'quit',
+            },
+        ]);
+    }
+
+    tray.on('click', () => {
+        mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+    });
+
+    tray.setToolTip(nameApp);
+
+    tray.setContextMenu(contextMenu);
+
+    // Tray End ////////////////////////////////////////////////////////
 };
 
 app.on('ready', createWindow);

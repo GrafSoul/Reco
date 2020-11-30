@@ -3,12 +3,14 @@ import React, { useRef, useEffect, useState } from 'react';
 // eslint-disable-next-line
 import adapter from 'webrtc-adapter';
 
+import Header from '../Header/Header';
 import AudioMeter from '../AudioMeter/AudioMeter';
 import ListRecords from '../ListRecords/ListRecords';
 
 import './MediaRecorder.scss';
 
 const MediaRecorder = () => {
+    const name = 'Reco';
     const videoElement = useRef();
     const audioInputSelect = useRef();
     const audioOutputSelect = useRef();
@@ -16,7 +18,6 @@ const MediaRecorder = () => {
     const constraints = useRef();
     const recorder = useRef(null);
     const chunks = useRef([]);
-    // const listItems = useRef([]);
 
     const [listItems, setListItems] = useState([]);
     const [onlyAudio, setOnlyAudio] = useState(false);
@@ -240,13 +241,8 @@ const MediaRecorder = () => {
 
     return (
         <div className="container">
-            <div className="header-content">
-                <h1>Media Recorder</h1>
-                <h2>
-                    Configure your {onlyAudio ? null : 'camera and '} audio
-                    devices
-                </h2>
-            </div>
+            <Header name={name} />
+            <div className="header-content"></div>
             <div
                 className={['control-wrap', !isStart ? null : 'hidden'].join(
                     ' ',
@@ -281,23 +277,27 @@ const MediaRecorder = () => {
                     </>
                 )}
 
+                <div className="video-content">
+                    <video
+                        id="video"
+                        poster="images/poster.png"
+                        autoPlay
+                        playsInline
+                        ref={videoElement}
+                    ></video>
+                </div>
+
                 <div className="settings">
+                    <h2>
+                        Configure your {onlyAudio ? null : 'camera and '} audio
+                        devices
+                    </h2>
                     <div
                         className={[
                             'video-settings',
                             onlyAudio ? 'invisible' : null,
                         ].join(' ')}
                     >
-                        <div className="video-content">
-                            <video
-                                id="video"
-                                poster="images/poster.png"
-                                autoPlay
-                                playsInline
-                                ref={videoElement}
-                            ></video>
-                        </div>
-
                         <div className="select">
                             <label htmlFor="videoSource">Video source:</label>
                             <select id="videoSource" ref={videoSelect}></select>
