@@ -239,10 +239,17 @@ const MediaRecorder = () => {
         e.target.value === 'audio' ? setOnlyAudio(true) : setOnlyAudio(false);
     };
 
+    const _refreshPage = () => {
+        console.log('Clicked');
+        window.location.reload();
+    };
+
     return (
         <div className="container">
             <Header name={name} />
-            <div className="header-content"></div>
+            <div className="header-content">
+                <button onClick={_refreshPage}>Reload</button>
+            </div>
             <div
                 className={['control-wrap', !isStart ? null : 'hidden'].join(
                     ' ',
