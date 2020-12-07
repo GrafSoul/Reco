@@ -24,6 +24,8 @@ const MediaRecorder = () => {
     const [isVideo, setIsVideo] = useState(true);
     const [isRecord, setIsRecord] = useState(false);
     const [isStart, setIsStart] = useState(false);
+    const [isSettings, setIsSettings] = useState(false);
+    const [isResult, setIsResult] = useState(false);
     const [count, setCount] = useState(0);
 
     useEffect(() => {
@@ -217,6 +219,7 @@ const MediaRecorder = () => {
             if (recorder.current.state === 'inactive') recordToList();
         };
         setIsRecord(false);
+        setIsResult(true);
     };
 
     const handlerOnlyAudio = () => {
@@ -239,17 +242,45 @@ const MediaRecorder = () => {
         e.target.value === 'audio' ? setOnlyAudio(true) : setOnlyAudio(false);
     };
 
-    const _refreshPage = () => {
-        console.log('Clicked');
+    const handlerRefreshPage = () => {
         window.location.reload();
+    };
+
+    const handlerSettings = () => {
+        setIsSettings(!isSettings);
+    };
+
+    const handlerResult = () => {
+        setIsResult(!isResult);
     };
 
     return (
         <div className="container">
             <Header name={name} />
+
             <div className="header-content">
-                <button onClick={_refreshPage}>Reload</button>
+                <button onClick={handlerResult}>Result</button>
+                <button onClick={handlerRefreshPage}>Reload</button>
+                <button onClick={handlerSettings}>Settings</button>
             </div>
+
+            <div
+                className={[
+                    'video-content',
+                    onlyAudio ? 'invisible' : null,
+                ].join(' ')}
+            >
+                <video
+                    id="video"
+                    poster="images/poster.png"
+                    autoPlay
+                    playsInline
+                    ref={videoElement}
+                ></video>
+            </div>
+
+            <AudioMeter />
+
             <div
                 className={['control-wrap', !isStart ? null : 'hidden'].join(
                     ' ',
@@ -283,59 +314,40 @@ const MediaRecorder = () => {
                         </div>
                     </>
                 )}
+            </div>
 
-                <div className="video-content">
-                    <video
-                        id="video"
-                        poster="images/poster.png"
-                        autoPlay
-                        playsInline
-                        ref={videoElement}
-                    ></video>
-                </div>
-
-                <AudioMeter />
-
-                <div className="settings">
-                    <div className="audio-settings">
-                        <h2>
-                            Configure your {onlyAudio ? null : 'camera and '}{' '}
-                            audio devices
-                        </h2>
-                        <div
-                            className={[
-                                'video-settings',
-                                onlyAudio ? 'invisible' : null,
-                            ].join(' ')}
-                        >
-                            <div className="select">
-                                <label htmlFor="videoSource">
-                                    Video source:
-                                </label>
-                                <select
-                                    id="videoSource"
-                                    ref={videoSelect}
-                                ></select>
-                            </div>
-                        </div>
-                        <div className="select">
-                            <label htmlFor="audioSource">Audio input:</label>
-
-                            <select
-                                id="audioSource"
-                                ref={audioInputSelect}
-                            ></select>
-                        </div>
-
-                        <div className="select">
-                            <label htmlFor="audioOutput">Audio output:</label>
-                            <select
-                                id="audioOutput"
-                                ref={audioOutputSelect}
-                            ></select>
-                        </div>
+            <div
+                className={['settings', isSettings ? 'active' : null].join(' ')}
+            >
+                <h2>
+                    Configure your {onlyAudio ? null : 'camera and '} audio
+                    devices
+                </h2>
+                <div
+                    className={[
+                        'video-settings',
+                        onlyAudio ? 'invisible' : null,
+                    ].join(' ')}
+                >
+                    <div className="select">
+                        <label htmlFor="videoSource">Video source:</label>
+                        <select id="videoSource" ref={videoSelect}></select>
                     </div>
                 </div>
+                <div className="select">
+                    <label htmlFor="audioSource">Audio input:</label>
+
+                    <select id="audioSource" ref={audioInputSelect}></select>
+                </div>
+                <AudioMeter />
+                <div className="select">
+                    <label htmlFor="audioOutput">Audio output:</label>
+                    <select id="audioOutput" ref={audioOutputSelect}></select>
+                </div>
+
+                <button className="btn btn-info" onClick={handlerSettings}>
+                    Back to Record
+                </button>
             </div>
 
             {isStart ? (
@@ -363,7 +375,7 @@ const MediaRecorder = () => {
                         className="btn btn-info"
                         onClick={handlerStartRecording}
                     >
-                        Settings
+                        Select Type
                     </button>
                 </div>
             ) : (
@@ -377,12 +389,16 @@ const MediaRecorder = () => {
                 </div>
             )}
 
-            <div className="footer-content">
+            <div className={['result', isResult ? 'active' : null].join(' ')}>
                 <h2>List of media records ({count})</h2>
                 <ListRecords
                     list={listItems}
                     deleteEntry={handlerDeleteEntry}
                 />
+
+                <button className="btn btn-info" onClick={handlerResult}>
+                    Back to Record
+                </button>
             </div>
         </div>
     );

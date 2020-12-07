@@ -20,7 +20,7 @@ const nameApp = 'Reco';
 const createWindow = async () => {
     let mainWindowState = windowStateKeeper({
         defaultWidth: 480,
-        defaultHeight: 590,
+        defaultHeight: 600,
     });
 
     mainWindow = new BrowserWindow({
@@ -33,7 +33,9 @@ const createWindow = async () => {
         width: mainWindowState.width,
         height: mainWindowState.height,
         minWidth: 480,
-        minHeight: 590,
+        maxHeight: 600,
+        maxWidth: 480,
+        minHeight: 600,
         titleBarStyle: 'hidden',
         backgroundColor: '#1b212e',
         webPreferences: {
