@@ -32,10 +32,6 @@ const createWindow = async () => {
         y: mainWindowState.y,
         width: mainWindowState.width,
         height: mainWindowState.height,
-        minWidth: 480,
-        maxHeight: 600,
-        maxWidth: 480,
-        minHeight: 600,
         titleBarStyle: 'hidden',
         backgroundColor: '#1b212e',
         webPreferences: {
@@ -51,6 +47,8 @@ const createWindow = async () => {
             ? 'http://localhost:3000'
             : `file://${path.join(__dirname, '../build/index.html')}`,
     );
+
+    mainWindow.setResizable(false);
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();

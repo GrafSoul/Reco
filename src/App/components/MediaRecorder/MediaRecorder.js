@@ -177,7 +177,7 @@ const MediaRecorder = () => {
                     <source src={url} type="video/webm" />
                 </video>
                 <a
-                    className="btn btn-info"
+                    className="btn btn-success"
                     href={url}
                     download={`${currentCount}.mp4`}
                 >
@@ -191,7 +191,7 @@ const MediaRecorder = () => {
                     <source src={url} type="audio/mp3" />
                 </audio>
                 <a
-                    className="btn btn-info"
+                    className="btn btn-success"
                     href={url}
                     download={`${currentCount}.mp3`}
                 >
@@ -259,9 +259,15 @@ const MediaRecorder = () => {
             <Header name={name} />
 
             <div className="header-content">
-                <button onClick={handlerResult}>Result</button>
-                <button onClick={handlerRefreshPage}>Reload</button>
-                <button onClick={handlerSettings}>Settings</button>
+                <button onClick={handlerResult}>
+                    <i className="fal fa-poll-people"></i>
+                </button>
+                <button onClick={handlerRefreshPage}>
+                    <i className="far fa-sync-alt"></i>
+                </button>
+                <button onClick={handlerSettings}>
+                    <i className="far fa-cog"></i>
+                </button>
             </div>
 
             <div
@@ -336,17 +342,17 @@ const MediaRecorder = () => {
                 </div>
                 <div className="select">
                     <label htmlFor="audioSource">Audio input:</label>
-
+                    <AudioMeter />
                     <select id="audioSource" ref={audioInputSelect}></select>
                 </div>
-                <AudioMeter />
+
                 <div className="select">
                     <label htmlFor="audioOutput">Audio output:</label>
                     <select id="audioOutput" ref={audioOutputSelect}></select>
                 </div>
 
-                <button className="btn btn-info" onClick={handlerSettings}>
-                    Back to Record
+                <button className="btn btn-success" onClick={handlerSettings}>
+                    <i className="far fa-arrow-left"></i> Back to Record
                 </button>
             </div>
 
@@ -355,33 +361,32 @@ const MediaRecorder = () => {
                     <button
                         disabled={isRecord ? true : false}
                         className={[
-                            'btn',
-                            'btn-success',
+                            'btn-record',
                             isRecord ? 'active' : null,
                         ].join(' ')}
                         onClick={handlerRecordStream}
                     >
-                        Record
+                        <i className="fas fa-record-vinyl"></i>
                     </button>
                     <button
                         disabled={isRecord ? false : true}
-                        className="btn btn-info"
+                        className="btn-record"
                         onClick={handlerRecordStop}
                     >
-                        Stop
+                        <i className="fas fa-stop-circle"></i>
                     </button>
                     <button
                         disabled={!isRecord ? false : true}
-                        className="btn btn-info"
+                        className="btn-record"
                         onClick={handlerStartRecording}
                     >
-                        Select Type
+                        <i className="fas fa-clipboard-list-check"></i>
                     </button>
                 </div>
             ) : (
                 <div className="record-btns">
                     <button
-                        className="btn btn-info"
+                        className="btn btn-success"
                         onClick={handlerStartRecording}
                     >
                         Start Recording
@@ -396,8 +401,8 @@ const MediaRecorder = () => {
                     deleteEntry={handlerDeleteEntry}
                 />
 
-                <button className="btn btn-info" onClick={handlerResult}>
-                    Back to Record
+                <button className="btn btn-success" onClick={handlerResult}>
+                    Back to Record <i className="fal fa-arrow-right"></i>
                 </button>
             </div>
         </div>

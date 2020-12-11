@@ -3,7 +3,33 @@
     padding-bottom: 20px;
     
     .header-content {
-        margin-bottom: 30px;        
+        margin-bottom: 10px;
+        padding: 0 30px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center; 
+        
+        button {
+            margin: 0;
+            padding: 0;
+            background-color: transparent;
+            border: none;
+            font-size: 1.5em;
+            outline: none !important;
+            transition: all .3s ease;
+
+            & i {
+                margin: 0;
+                padding: 0;
+                outline: none; 
+                color: rgb(7, 126, 80);
+                &:hover {
+                    color: rgb(10, 197, 125);
+                }
+            }
+
+
+        }
     }
 
     h1 {
@@ -67,11 +93,11 @@
 }
 
 .video-settings, .audio-settings{
-    margin: 0 20px;
+    margin: 0 10px;
 }
 
 .audio-settings {
-    margin-bottom: 30px;
+    margin-bottom: 30px;   
 }
 
 .invisible {
@@ -93,7 +119,7 @@
 video {
     width: 400px;
     height: 300px;
-    border: 3px solid rgb(83, 172, 142);
+    border: 3px solid rgb(2, 139, 93);
 }
 
 label {
@@ -121,7 +147,7 @@ label {
 }
 
 .control {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
     input {
         cursor: pointer;
@@ -145,13 +171,13 @@ label {
     max-width: 400px;
     margin-bottom: 5px;
     border-radius: 6px;
-    border: 2px solid rgb(83, 172, 142);
+    border: 2px solid rgb(2, 139, 93);
 }
 
 .select {
     max-width: 400px;
     width: 100%;
-    margin: 0 auto 15px;
+    margin: 0 auto 20px;
 
     select {
         width: 400px;
@@ -172,13 +198,30 @@ label {
     margin-bottom: 30px;
     text-align: center;
 
-    button {
-        margin: 5px;
+    .btn-record {
+        margin: 0 5px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        outline: none !important;
+        transition: all .3s ease;
+
+        & i {
+            margin: 0;
+            padding: 0;
+            outline: none; 
+            color: rgb(7, 126, 80);
+            &:hover {
+                color: rgb(10, 197, 125);
+            }
+        }
+
+
     }
 
     .active{
-        background-color:rgb(161, 0, 0);
-        border-color: rgba(161, 0, 0, 1);
+        color:rgb(161, 0, 0);
         animation:blinking 1s infinite;
     }
 

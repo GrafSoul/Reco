@@ -64,7 +64,18 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+  font: inherit;  
+}
+
+input:active,
+button:active,
+textarea:active,
+select:active,
+input:focus,
+button:focus,
+textarea:focus,
+select:focus  {
+   outline: none !important;  
 }
 
 ::selection {
