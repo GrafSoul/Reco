@@ -1,7 +1,10 @@
+// Core
 import React from 'react';
 
+// Styles
 import './Header.scss';
 
+// Electron
 const { remote } = window.require('electron');
 const mainWindow = remote.getCurrentWindow();
 

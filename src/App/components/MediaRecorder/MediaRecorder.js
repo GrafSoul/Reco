@@ -6,6 +6,11 @@ import adapter from 'webrtc-adapter';
 import Header from '../Header/Header';
 import AudioMeter from '../AudioMeter/AudioMeter';
 import ListRecords from '../ListRecords/ListRecords';
+import ControlRecord from '../ControlRecord/ControlRecord';
+import ControlHeader from '../ControlHeader/ControlHeader';
+import VideoContent from '../VideoContent/VideoContent';
+import SettingsRecord from '../SettingsRecord/SettingsRecord';
+import ControlType from '../ControlType/ControlType';
 
 import './MediaRecorder.scss';
 
@@ -248,6 +253,7 @@ const MediaRecorder = () => {
 
     const handlerSettings = () => {
         setIsSettings(!isSettings);
+        console.log(isSettings);
     };
 
     const handlerResult = () => {
@@ -258,153 +264,52 @@ const MediaRecorder = () => {
         <div className="container">
             <Header name={name} />
 
-            <div className="header-content">
-                <button onClick={handlerResult}>
-                    <i className="fal fa-poll-people"></i>
-                </button>
-                <button onClick={handlerRefreshPage}>
-                    <i className="far fa-sync-alt"></i>
-                </button>
-                <button onClick={handlerSettings}>
-                    <i className="far fa-cog"></i>
-                </button>
-            </div>
+            <ControlHeader
+                handlerResult={handlerResult}
+                handlerRefreshPage={handlerRefreshPage}
+                handlerSettings={handlerSettings}
+            />
 
-            <div
-                className={[
-                    'video-content',
-                    onlyAudio ? 'invisible' : null,
-                ].join(' ')}
-            >
-                <video
-                    id="video"
-                    poster="images/poster.png"
-                    autoPlay
-                    playsInline
-                    ref={videoElement}
-                ></video>
-            </div>
-
-            <AudioMeter />
-
-            <div
-                className={['control-wrap', !isStart ? null : 'hidden'].join(
-                    ' ',
-                )}
-            >
-                {isVideo && (
-                    <>
-                        <div className="select-title">
-                            Selecting a record type
-                        </div>
-
-                        <div
-                            className="control"
-                            onChange={(e) => handleSetOnlyAudio(e)}
-                        >
-                            <input
-                                type="radio"
-                                name="media"
-                                value="video"
-                                id="mediaVideo"
-                                defaultChecked={!onlyAudio}
-                            />
-                            <label htmlFor="media">Video</label>
-                            <input
-                                type="radio"
-                                name="media"
-                                value="audio"
-                                defaultChecked={onlyAudio}
-                            />
-                            <label htmlFor="media">Audio</label>
-                        </div>
-                    </>
-                )}
-            </div>
-
-            <div
-                className={['settings', isSettings ? 'active' : null].join(' ')}
-            >
-                <h2>
-                    Configure your {onlyAudio ? null : 'camera and '} audio
-                    devices
-                </h2>
-                <div
-                    className={[
-                        'video-settings',
-                        onlyAudio ? 'invisible' : null,
-                    ].join(' ')}
-                >
-                    <div className="select">
-                        <label htmlFor="videoSource">Video source:</label>
-                        <select id="videoSource" ref={videoSelect}></select>
-                    </div>
-                </div>
-                <div className="select">
-                    <label htmlFor="audioSource">Audio input:</label>
-                    <AudioMeter />
-                    <select id="audioSource" ref={audioInputSelect}></select>
-                </div>
-
-                <div className="select">
-                    <label htmlFor="audioOutput">Audio output:</label>
-                    <select id="audioOutput" ref={audioOutputSelect}></select>
-                </div>
-
-                <button className="btn btn-success" onClick={handlerSettings}>
-                    <i className="far fa-arrow-left"></i> Back to Record
-                </button>
-            </div>
-
-            {isStart ? (
-                <div className="record-btns">
-                    <button
-                        disabled={isRecord ? true : false}
-                        className={[
-                            'btn-record',
-                            isRecord ? 'active' : null,
-                        ].join(' ')}
-                        onClick={handlerRecordStream}
-                    >
-                        <i className="fas fa-record-vinyl"></i>
-                    </button>
-                    <button
-                        disabled={isRecord ? false : true}
-                        className="btn-record"
-                        onClick={handlerRecordStop}
-                    >
-                        <i className="fas fa-stop-circle"></i>
-                    </button>
-                    <button
-                        disabled={!isRecord ? false : true}
-                        className="btn-record"
-                        onClick={handlerStartRecording}
-                    >
-                        <i className="fas fa-clipboard-list-check"></i>
-                    </button>
-                </div>
-            ) : (
-                <div className="record-btns">
-                    <button
-                        className="btn btn-success"
-                        onClick={handlerStartRecording}
-                    >
-                        Start Recording
-                    </button>
-                </div>
-            )}
-
-            <div className={['result', isResult ? 'active' : null].join(' ')}>
-                <h2>List of media records ({count})</h2>
-                <ListRecords
-                    list={listItems}
-                    deleteEntry={handlerDeleteEntry}
+            <div className="media-content">
+                <VideoContent
+                    onlyAudio={onlyAudio}
+                    videoElement={videoElement}
                 />
 
-                <button className="btn btn-success" onClick={handlerResult}>
-                    Back to Record <i className="fal fa-arrow-right"></i>
-                </button>
+                <AudioMeter />
             </div>
+
+            <ControlType
+                isStart={isStart}
+                isVideo={isVideo}
+                handleSetOnlyAudio={handleSetOnlyAudio}
+                onlyAudio={onlyAudio}
+            />
+
+            <SettingsRecord
+                isSettings={isSettings}
+                onlyAudio={onlyAudio}
+                videoSelect={videoSelect}
+                audioInputSelect={audioInputSelect}
+                audioOutputSelect={audioOutputSelect}
+                handlerSettings={handlerSettings}
+            />
+
+            <ListRecords
+                list={listItems}
+                deleteEntry={handlerDeleteEntry}
+                isResult={isResult}
+                count={count}
+                handlerResult={handlerResult}
+            />
+
+            <ControlRecord
+                isStart={isStart}
+                isRecord={isRecord}
+                recordStream={handlerRecordStream}
+                recordStop={handlerRecordStop}
+                startRecording={handlerStartRecording}
+            />
         </div>
     );
 };

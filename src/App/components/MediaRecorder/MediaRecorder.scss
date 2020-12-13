@@ -1,36 +1,9 @@
 .container {
-    margin-top: 50px;
+    position: absolute;
     padding-bottom: 20px;
-    
-    .header-content {
-        margin-bottom: 10px;
-        padding: 0 30px;
-        display:flex;
-        justify-content: space-between;
-        align-items: center; 
-        
-        button {
-            margin: 0;
-            padding: 0;
-            background-color: transparent;
-            border: none;
-            font-size: 1.5em;
-            outline: none !important;
-            transition: all .3s ease;
-
-            & i {
-                margin: 0;
-                padding: 0;
-                outline: none; 
-                color: rgb(7, 126, 80);
-                &:hover {
-                    color: rgb(10, 197, 125);
-                }
-            }
-
-
-        }
-    }
+    height: 100%;
+    text-align: center;
+    -webkit-user-select: none;
 
     h1 {
         margin-bottom: 10px;
@@ -45,36 +18,16 @@
         font-size: 1.2em;
         text-align: center;
     }
-
-    .footer-content {
-        border-top: 1px solid rgb(83, 172, 142);
-        border-bottom: 1px solid rgb(83, 172, 142);
-        color: rgb(255, 255, 255);
-
-        h2 {
-            margin-top: 20px;
-            color: rgb(255, 255, 255);
-            font-size: 1.2em;
-            text-align: center;
-        }
-    }
 }
 
-.settings {
-    width: 480px;
-    position: absolute;
-    top: 40px;
-    right:-480px;
-    bottom: 0;
-    padding: 30px;
-    z-index: 100;
-    background-color: rgb(1, 43, 44);
-    transition: all .4s ease-in;
-
-    &.active {
-        right:0; 
-    }
+.media-content {
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .result {
     width: 480px;
@@ -92,78 +45,9 @@
     }
 }
 
-.video-settings, .audio-settings{
-    margin: 0 10px;
-}
 
-.audio-settings {
-    margin-bottom: 30px;   
-}
 
-.invisible {
-    height: 0 !important;
-    visibility: hidden;
-    display: none;
-}
 
-.video-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 300px;
-    margin-bottom: 20px;
-    overflow: hidden;
-}
-
-video {
-    width: 400px;
-    height: 300px;
-    border: 3px solid rgb(2, 139, 93);
-}
-
-label {
-    display: block;
-    font-size: 1em;
-    line-height: 1em;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-.select-title {
-    font-size: 1.1em;
-    line-height: 1.2em;
-    color: rgb(255, 255, 255);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.control-wrap {
-    &.hidden {
-        display: none;
-    }
-}
-
-.control {
-    margin-bottom: 10px;
-    text-align: center;
-    input {
-        cursor: pointer;
-    }
-    
-    label {
-        display: inline-block;
-        font-size: 1.2em;
-        line-height: 1.2em;
-        color: rgb(255, 255, 255);
-        font-weight: 400;
-        margin-bottom: 0;
-        margin-left: 10px;
-        margin-right: 20px;
-    }
-}
 
 .audio-indicator {
     width: 100%;
@@ -174,101 +58,4 @@ label {
     border: 2px solid rgb(2, 139, 93);
 }
 
-.select {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto 20px;
-
-    select {
-        width: 400px;
-        padding: 7px;
-        margin: 0;
-        font-size: 1.1em;
-        border-radius: 4px;
-        background: rgb(248, 248, 248);
-        color: rgb(28, 55, 79);
-        border: none;
-        outline: none;
-        display: block;
-        cursor: pointer;
-    }
-}
-
-.record-btns {
-    margin-bottom: 30px;
-    text-align: center;
-
-    .btn-record {
-        margin: 0 5px;
-        padding: 0;
-        background-color: transparent;
-        border: none;
-        font-size: 2em;
-        outline: none !important;
-        transition: all .3s ease;
-
-        & i {
-            margin: 0;
-            padding: 0;
-            outline: none; 
-            color: rgb(7, 126, 80);
-            &:hover {
-                color: rgb(10, 197, 125);
-            }
-        }
-
-
-    }
-
-    .active{
-        color:rgb(161, 0, 0);
-        animation:blinking 1s infinite;
-    }
-
-    @keyframes blinking{
-        0%{opacity: 1;}
-        50%{opacity: .3;}
-        100%{opacity: 1;}
-    }
-    
-}
-
-.list-media {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    li {
-        margin: 0 20px 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    span {
-        margin-right: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    video {
-        width: 200px;
-        height: auto;
-        margin-left: 10px;
-        margin-right: 20px;
-    }
-
-    audio {
-        margin-left: 10px;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-
-}
-
-@media screen and (min-width: 900px) {
-
-}
 

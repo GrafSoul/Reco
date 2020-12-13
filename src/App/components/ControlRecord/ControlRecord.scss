@@ -1,0 +1,51 @@
+.control-record {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(1, 41, 42);
+    border-top: 1px solid rgb(1, 57, 59);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.3);
+}
+
+.record-btns {
+    text-align: center;
+
+    .btn-record {
+        margin: 0 5px;
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        outline: none !important;
+        transition: all .3s ease;
+
+        & i {
+            margin: 0;
+            padding: 0;
+            outline: none; 
+            color: rgb(7, 126, 80);
+            &:hover {
+                color: rgb(10, 197, 125);
+            }
+        }
+
+
+    }
+
+    .active{
+        color:rgb(161, 0, 0);
+        animation:blinking 1s infinite;
+    }
+
+    @keyframes blinking{
+        0%{opacity: 1;}
+        50%{opacity: .3;}
+        100%{opacity: 1;}
+    }
+    
+}

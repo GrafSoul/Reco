@@ -1,0 +1,12 @@
+.video-content {
+    video {
+        width: 400px;
+        height: 300px;
+        margin-bottom: 10px;
+        border: 3px solid rgb(2, 139, 93);
+    }
+
+    &.invisible {
+        display: none;
+    }
+}
