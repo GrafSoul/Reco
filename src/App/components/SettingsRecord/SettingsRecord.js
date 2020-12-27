@@ -40,10 +40,11 @@ export default function SettingsRecord({
                 <label htmlFor="audioOutput">Audio output:</label>
                 <select id="audioOutput" ref={audioOutputSelect}></select>
             </div>
-
-            <button className="btn btn-success" onClick={handlerSettings}>
-                <i className="far fa-arrow-left"></i> Back to Record
-            </button>
+            <div className="control-record">
+                <button className="btn btn-success" onClick={handlerSettings}>
+                    <i className="far fa-arrow-left"></i> Back to Record
+                </button>
+            </div>
         </div>
     );
 }

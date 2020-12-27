@@ -22,7 +22,7 @@
         border: none;
         font-size: 2em;
         outline: none !important;
-        transition: all .3s ease;
+        transition: color .3s ease;
 
         & i {
             margin: 0;
@@ -40,12 +40,33 @@
     .active{
         color:rgb(161, 0, 0);
         animation:blinking 1s infinite;
+        cursor: default;
+
+        & i {
+            color:rgb(161, 0, 0);
+            &:hover {
+                color:rgb(161, 0, 0);
+            }
+        }
     }
 
     @keyframes blinking{
         0%{opacity: 1;}
-        50%{opacity: .3;}
+        50%{opacity: .5;}
         100%{opacity: 1;}
+    }
+
+    .disabled{
+        opacity: 0.3;
+        cursor: default;
+        &:hover {
+            color: rgb(7, 126, 80);
+        }
+        & i {
+             &:hover {
+                color: rgb(7, 126, 80);
+            }
+        }
     }
     
 }

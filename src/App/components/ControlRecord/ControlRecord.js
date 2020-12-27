@@ -27,14 +27,20 @@ const ControlRecord = ({
                     </button>
                     <button
                         disabled={isRecord ? false : true}
-                        className="btn-record"
+                        className={[
+                            'btn-record',
+                            !isRecord ? 'disabled' : null,
+                        ].join(' ')}
                         onClick={recordStop}
                     >
                         <i className="fas fa-stop-circle"></i>
                     </button>
                     <button
                         disabled={!isRecord ? false : true}
-                        className="btn-record"
+                        className={[
+                            'btn-record',
+                            isRecord ? 'disabled' : null,
+                        ].join(' ')}
                         onClick={startRecording}
                     >
                         <i className="fas fa-clipboard-list-check"></i>

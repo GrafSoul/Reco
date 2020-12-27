@@ -176,13 +176,12 @@ const MediaRecorder = () => {
         let url = URL.createObjectURL(blob);
         let currentCount = count + 1;
         let currentRecord = !onlyAudio ? (
-            <span key={currentCount}>
-                {currentCount}.
+            <span className="list-content" key={currentCount}>
                 <video controls>
                     <source src={url} type="video/webm" />
                 </video>
                 <a
-                    className="btn btn-success"
+                    className="btn btn-sm btn-info"
                     href={url}
                     download={`${currentCount}.mp4`}
                 >
@@ -190,13 +189,12 @@ const MediaRecorder = () => {
                 </a>
             </span>
         ) : (
-            <span key={currentCount}>
-                {currentCount}.
+            <span className="list-content" key={currentCount}>
                 <audio controls>
                     <source src={url} type="audio/mp3" />
                 </audio>
                 <a
-                    className="btn btn-success"
+                    className="btn btn-sm btn-info"
                     href={url}
                     download={`${currentCount}.mp3`}
                 >

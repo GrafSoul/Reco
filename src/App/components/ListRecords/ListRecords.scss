@@ -5,14 +5,13 @@
     list-style: none;
 
     li {
-        margin: 0 20px 20px;
+        margin: 0 20px 10px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     span {
-        margin-right: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -22,14 +21,42 @@
     video {
         width: 200px;
         height: auto;
-        margin-left: 10px;
-        margin-right: 20px;
-    }
-
-    audio {
-        margin-left: 10px;
-        margin-right: 20px;
         margin-bottom: 10px;
     }
 
+    audio { 
+        margin-top: 0;     
+        margin-bottom: 10px;
+    }
+
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-item {
+    padding-bottom: 10px;
+    position: relative;
+    border-bottom: 1px solid rgb(2, 139, 93);
+}
+
+.btn-delete {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-color: rgb(255, 0, 0);
+    color:rgb(255, 255, 255);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2em;
+
+    &:hover {
+        opacity: 0.6;
+    }
 }
