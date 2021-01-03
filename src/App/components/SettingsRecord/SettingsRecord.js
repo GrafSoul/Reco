@@ -41,7 +41,10 @@ export default function SettingsRecord({
                 <select id="audioOutput" ref={audioOutputSelect}></select>
             </div>
             <div className="control-record">
-                <button className="btn btn-success" onClick={handlerSettings}>
+                <button
+                    className="btn btn-success btn-sm"
+                    onClick={handlerSettings}
+                >
                     <i className="far fa-arrow-left"></i> Back to Record
                 </button>
             </div>

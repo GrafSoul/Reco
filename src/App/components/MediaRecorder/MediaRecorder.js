@@ -204,7 +204,7 @@ const MediaRecorder = () => {
         );
 
         let currentList = listItems;
-        currentList.push(currentRecord);
+        currentList.unshift(currentRecord);
         setListItems(currentList);
         setCount(count + 1);
     };

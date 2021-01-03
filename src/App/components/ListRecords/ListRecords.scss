@@ -1,8 +1,8 @@
 
 .list-media {
-    margin: 0;
-    padding: 0;
+    margin: 10px 0 !important;
     list-style: none;
+    display: block;
 
     li {
         margin: 0 20px 10px;
@@ -42,6 +42,10 @@
     padding-bottom: 10px;
     position: relative;
     border-bottom: 1px solid rgb(2, 139, 93);
+
+    &:last-child {
+        border-bottom: none;
+    }
 }
 
 .btn-delete {
@@ -59,4 +63,22 @@
     &:hover {
         opacity: 0.6;
     }
+}
+
+.list-records {
+    position: relative;
+    padding: 0;
+    border: 1px solid rgb(2, 139, 93);
+    border-radius: 12px;
+    box-shadow: inset 1px 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+.list-none {
+    position: absolute;    
+    top: 170px;
+    left: 0;
+    right: 0;
+    font-size: 1.3em;
+    color:  rgb(2, 139, 93);
+    text-align: center;
 }
