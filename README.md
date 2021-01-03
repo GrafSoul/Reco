@@ -1,9 +1,6 @@
 # Reco | App for video and audio recording
+
 A simple application for recording video and audio using a video camera and microphone. Made using - Electron.js, React.js.
-
-## Don't use be in development!
-
-### Download
 
 ## Run for start development version
 
@@ -35,4 +32,3 @@ yarn build
 [mit licensed]: https://github.com/GrafSoul/media-recorder/blob/master/LICENSE
 [nodejs]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
-
